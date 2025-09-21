@@ -1,6 +1,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+body {
+  font-family: 'Oswald', sans-serif;
+}
+
+h1 {
+  font-weight: 700; /* This will now use Oswald-Bold.woff2 */
+}
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
