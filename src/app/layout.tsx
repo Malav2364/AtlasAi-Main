@@ -40,8 +40,8 @@ const oswald = localFont({
   variable: '--font-oswald',
 });
 export const metadata: Metadata = {
-  title: 'My Oswald App',
-  description: 'Website using the Oswald font',
+  title: 'Atlas AI',
+  description: 'Explore and Create Your Next Adventure with Atlas AI',
 };
 export default function RootLayout({
   children,
