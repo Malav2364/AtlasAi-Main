@@ -7,10 +7,10 @@ export default function Home() {
     <main>
     <section className="flex flex-col items-center justify-center min-h-screen">
       <div className="flex items-center">
-        <p className="text-7xl font-bold mr-4">Start Your Next Chapter</p>
-        <ContainerTextFlip
+        <p className="text-7xl font-bold mr-4 uppercase font-stretch-100% text-[15vw] items-start">Start Your Next Chapter</p>
+        {/* <ContainerTextFlip
           words={["Travel.", "Explore.", "Discover.", "Create Memories."]}
-        />
+        /> */}
       </div>
     </section>
     <div className="fixed bottom-4 right-4">
