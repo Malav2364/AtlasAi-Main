@@ -48,13 +48,13 @@ export default function Home() {
           autoPlay
           loop
           muted
-          className="absolute top-0 left-0 w-full h-full object-cover"
+          className="absolute top-0 left-0 w-full h-full object-cover z-0"
         >
           <source src="/heroVid.mp4" type="video/mp4" />
         </video>
-        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+      <div className="absolute inset-0 bg-black opacity-65 z-10" />
         <div className="relative z-10 flex items-center">
-          <h1 ref={textRef} className="font-bold uppercase font-stretch-100% text-8xl text-left text-white" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)' }}>
+          <h1 ref={textRef} className="font-bold uppercase font-stretch-100% text-8xl text-left text-white z-20" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)' }}>
             {lines.map((line, lineIndex) => (
               <div key={lineIndex} className="block">
                 {line.split("").map((char, charIndex) => (
