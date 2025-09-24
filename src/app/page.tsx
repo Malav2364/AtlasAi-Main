@@ -2,20 +2,35 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import { Skiper26 } from '@/components/skiper26';
 import gsap from 'gsap';
+import { PlaneTakeoff, ArrowDown } from 'lucide-react';
 
 
 
 export default function Home() {
   const textRef = useRef<HTMLHeadingElement>(null);
-  const buttonRef = useRef(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const planeRef = useRef<SVGSVGElement>(null);
+  const buttonTextRef = useRef<HTMLSpanElement>(null);
+  const exploreBtnRef = useRef<HTMLButtonElement>(null);
+  const exploreBtnTextRef = useRef<HTMLSpanElement>(null);
+  const exploreBtnIconRef = useRef<SVGSVGElement>(null);
   const lines = ["Go.", "Explore.", "Remember."];
 
-  // Animate headline
+  // Animate headline and buttons
   useLayoutEffect(() => {
     const el = textRef.current;
-    if (el) {
+    const btn1 = buttonRef.current;
+    const btn2 = exploreBtnRef.current;
+
+    if (el && btn1 && btn2) {
       const chars = el.querySelectorAll("span");
-      gsap.from(chars, {
+      const masterTl = gsap.timeline();
+
+      // Set the initial state of the buttons before any animation starts
+      gsap.set([btn1, btn2], { opacity: 0, y: 30 });
+
+      // 1. Animate the headline first
+      masterTl.from(chars, {
         x: (i) => Math.sin(i * 0.4) * 500,
         y: (i) => i * -40,
         rotationY: 720,
@@ -25,6 +40,83 @@ export default function Home() {
         stagger: 0.05,
         ease: "back.out(1.2)"
       });
+
+      // 2. Animate the buttons TO their final state
+      masterTl.to([btn1, btn2], {
+        y: 0,
+        opacity: 1,
+        stagger: 0.04,
+        duration: 0.03,
+        ease: "power3.out"
+      }, "-=0.8"); // Overlap with the end of the headline animation
+    }
+  }, []);
+
+  // Animate "Start Your Journey" button on hover (Reversed)
+  useLayoutEffect(() => {
+    const button = buttonRef.current;
+    const plane = planeRef.current;
+    const buttonText = buttonTextRef.current;
+
+    if (button && plane && buttonText) {
+      const tl = gsap.timeline({
+        paused: true,
+        defaults: { duration: 0.4, ease: "power3.inOut" },
+      });
+
+      // Animation to EXPAND the button
+      tl.to(button, {
+        width: "250px",
+        paddingLeft: "1.75rem", // 28px, original px-7
+        paddingRight: "1.75rem",
+      })
+        .to(buttonText, { opacity: 1 }, "<")
+        .to(plane, { opacity: 0 }, "<");
+
+      const onEnter = () => { if (!tl.isActive()) tl.play(); };
+      const onLeave = () => { if (!tl.isActive()) tl.reverse(); };
+
+      button.addEventListener("mouseenter", onEnter);
+      button.addEventListener("mouseleave", onLeave);
+
+      return () => {
+        button.removeEventListener("mouseenter", onEnter);
+        button.removeEventListener("mouseleave", onLeave);
+      };
+    }
+  }, []);
+
+  // Animate "Explore More" button on hover (Reversed)
+  useLayoutEffect(() => {
+    const button = exploreBtnRef.current;
+    const icon = exploreBtnIconRef.current;
+    const text = exploreBtnTextRef.current;
+
+    if (button && icon && text) {
+      const tl = gsap.timeline({
+        paused: true,
+        defaults: { duration: 0.4, ease: "power3.inOut" },
+      });
+
+      // Animation to EXPAND the button
+      tl.to(button, {
+        width: "250px",
+        paddingLeft: "1.75rem",
+        paddingRight: "1.75rem",
+      })
+      .to(text, { opacity: 1 }, "<")
+      .to(icon, { opacity: 0 }, "<");
+
+      const onEnter = () => { if (!tl.isActive()) tl.play(); };
+      const onLeave = () => { if (!tl.isActive()) tl.reverse(); };
+
+      button.addEventListener("mouseenter", onEnter);
+      button.addEventListener("mouseleave", onLeave);
+
+      return () => {
+        button.removeEventListener("mouseenter", onEnter);
+        button.removeEventListener("mouseleave", onLeave);
+      };
     }
   }, []);
 
@@ -58,28 +150,54 @@ export default function Home() {
             ))}
           </h1>
           
-          {/* Travel CTA Button with Airplane Animation */}
-<button
-  ref={buttonRef}
-  className="relative px-7 py-2 mt-8
-             bg-transparent
-             rounded-full
-             border-1 border-white
-             font-bold text-xl text-white
-             shadow-md
-             backdrop-blur-lg
-             focus:outline-none
-             transition
-             overflow-hidden"
-  style={{
-    boxShadow: "0px 5px 18px rgba(30,190,210,0.09)",
-    cursor: "pointer",
-    minWidth: 0
-  }}
->
-  Start Your Journey
-</button>
+          {/* Container for both buttons */}
+          <div className="flex items-center gap-4 mt-8">
+            {/* Travel CTA Button - Reversed Animation */}
+            <button
+              ref={buttonRef}
+              className="relative flex items-center justify-center p-3.5
+                        bg-transparent
+                        rounded-full
+                        border border-white
+                        font-bold text-xl text-white
+                        shadow-md
+                        backdrop-blur-lg
+                        focus:outline-none
+                        transition
+                        overflow-hidden"
+              style={{
+                boxShadow: "0px 5px 18px rgba(30,190,210,0.09)",
+                cursor: "pointer",
+                width: "50px", // Default circular width
+                height: "50px"
+              }}
+            >
+              <span ref={buttonTextRef} className="absolute whitespace-nowrap opacity-0">Start Your Journey</span>
+              <PlaneTakeoff ref={planeRef} className="absolute" size={24} />
+            </button>
 
+            {/* "Explore More" Button - Reversed Animation */}
+            <button
+              ref={exploreBtnRef}
+              className="relative flex items-center justify-center p-3.5
+                        bg-white
+                        rounded-full
+                        font-bold text-xl text-gray-900
+                        shadow-lg
+                        focus:outline-none
+                        transition
+                        overflow-hidden"
+              style={{
+                width: "50px", // Default circular width
+                height: "50px",
+                boxShadow: "0 4px 15px rgba(60,60,60,0.13)",
+                cursor: "pointer"
+              }}
+            >
+              <span ref={exploreBtnTextRef} className="absolute whitespace-nowrap opacity-0">Explore More</span>
+              <ArrowDown ref={exploreBtnIconRef} className="absolute" size={24} />
+            </button>
+          </div>
         </div>
       </section>
 
