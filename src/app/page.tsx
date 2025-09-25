@@ -133,7 +133,7 @@ export default function Home() {
   return (
     <main>
       <section className="relative flex flex-col items-start justify-center min-h-screen pl-10 overflow-hidden">
-        <Navbar forceWhite/>
+        <Navbar />
         <video
           autoPlay
           loop
