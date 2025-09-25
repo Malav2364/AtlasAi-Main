@@ -3,6 +3,7 @@ import React, { useLayoutEffect, useRef } from 'react';
 import { Skiper26 } from '@/components/skiper26';
 import gsap from 'gsap';
 import { PlaneTakeoff, ArrowDown } from 'lucide-react';
+import Navbar from "@/components/navbar"; // update path as needed
 
 
 
@@ -104,8 +105,8 @@ export default function Home() {
         paddingLeft: "1.75rem",
         paddingRight: "1.75rem",
       })
-      .to(text, { opacity: 1 }, "<")
-      .to(icon, { opacity: 0 }, "<");
+        .to(text, { opacity: 1 }, "<")
+        .to(icon, { opacity: 0 }, "<");
 
       const onEnter = () => { if (!tl.isActive()) tl.play(); };
       const onLeave = () => { if (!tl.isActive()) tl.reverse(); };
@@ -123,6 +124,7 @@ export default function Home() {
 
   return (
     <main>
+      <Navbar />
       <section className="relative flex flex-col items-start justify-center min-h-screen pl-10 overflow-hidden">
         <video
           autoPlay
@@ -149,7 +151,7 @@ export default function Home() {
               </div>
             ))}
           </h1>
-          
+
           {/* Container for both buttons */}
           <div className="flex items-center gap-4 mt-8">
             {/* Travel CTA Button - Reversed Animation */}
@@ -202,7 +204,10 @@ export default function Home() {
       </section>
 
       <section>
-        {/* ...other sections */}
+        <h2 className="text-4xl font-bold mb-4">Second Section</h2>
+        <p className="text-lg max-w-2xl">
+          This is a scrollable second section. Add enough content here to force scrolling for testing scroll behavior on the navbar.
+        </p>
       </section>
       <div className="fixed bottom-4 right-4">
         <Skiper26 />
