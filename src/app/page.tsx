@@ -212,11 +212,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-4xl font-bold mb-4">Second Section</h2>
-        <p className="text-lg max-w-2xl">
-          This is a scrollable second section. Add enough content here to force scrolling for testing scroll behavior on the navbar.
-        </p>
+      <section id="second-section"> {/* Add an ID to the target section */}
+]       <TimeLineScroll />
       </section>
     </main>
   );
