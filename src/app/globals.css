@@ -127,4 +127,7 @@ h1 {
   body {
     @apply bg-background text-foreground;
   }
+  .blend-difference {
+  mix-blend-mode: difference;
+}
 }

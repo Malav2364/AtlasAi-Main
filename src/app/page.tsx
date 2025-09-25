@@ -1,10 +1,13 @@
 "use client";
 import React, { useLayoutEffect, useRef } from 'react';
-import { Skiper26 } from '@/components/skiper26';
+// import { Skiper26 } from '@/components/skiper26';
 import gsap from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'; // Import the plugin
 import { PlaneTakeoff, ArrowDown } from 'lucide-react';
 import Navbar from "@/components/navbar"; // update path as needed
+import TimeLineScroll from '@/components/timeLineScroll';
 
+gsap.registerPlugin(ScrollToPlugin); // Register the plugin
 
 
 export default function Home() {
@@ -121,6 +124,11 @@ export default function Home() {
     }
   }, []);
 
+  // Function to handle smooth scrolling
+  const handleScroll = () => {
+    gsap.to(window, { duration: 1.5, scrollTo: "#second-section", ease: "power2.inOut" });
+  };
+
 
   return (
     <main>
@@ -181,6 +189,7 @@ export default function Home() {
             {/* "Explore More" Button - Reversed Animation */}
             <button
               ref={exploreBtnRef}
+              onClick={handleScroll} // Add the onClick handler
               className="relative flex items-center justify-center p-3.5
                         bg-white
                         rounded-full
@@ -203,15 +212,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-4xl font-bold mb-4">Second Section</h2>
-        <p className="text-lg max-w-2xl">
-          This is a scrollable second section. Add enough content here to force scrolling for testing scroll behavior on the navbar.
-        </p>
+      <section id="second-section"> {/* Add an ID to the target section */}
+]       <TimeLineScroll />
       </section>
-      <div className="fixed bottom-4 right-4">
-        <Skiper26 />
-      </div>
     </main>
   );
 }
