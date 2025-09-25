@@ -8,6 +8,12 @@ body {
 h1 {
   font-weight: 700; /* This will now use Oswald-Bold.woff2 */
 }
+.sticky-navbar {
+  position: sticky;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 120;
+}
 
 @custom-variant dark (&:is(.dark *));
 

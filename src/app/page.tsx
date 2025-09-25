@@ -124,8 +124,8 @@ export default function Home() {
 
   return (
     <main>
-      <Navbar />
       <section className="relative flex flex-col items-start justify-center min-h-screen pl-10 overflow-hidden">
+        <Navbar forceWhite/>
         <video
           autoPlay
           loop
@@ -204,10 +204,7 @@ export default function Home() {
       </section>
 
       <section>
-        <h2 className="text-4xl font-bold mb-4">Second Section</h2>
-        <p className="text-lg max-w-2xl">
-          This is a scrollable second section. Add enough content here to force scrolling for testing scroll behavior on the navbar.
-        </p>
+        <Navbar />
       </section>
       <div className="fixed bottom-4 right-4">
         <Skiper26 />
