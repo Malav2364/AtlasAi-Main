@@ -5,15 +5,15 @@ import Lenis from "lenis";
 import { useEffect, useRef, useState } from "react";
 
 const images = [
-  "images/img1.jpg",
-  "images/img2.jpg",
-  "images/img3.jpg",
-  "images/img4.jpg",
-  "images/img5.jpg",
-  "images/img6.jpg",
-  "images/img7.jpg",
-  "images/img8.jpg",
-  "images/img9.jpg",
+  "/images/img1.jpg",
+  "/images/img2.jpg",
+  "/images/img3.jpg",
+  "/images/img4.jpg",
+  "/images/img5.jpg",
+  "/images/img6.jpg",
+  "/images/img7.jpg",
+  "/images/img8.jpg",
+  "/images/img9.jpg",
 ];
 
 const Skiper30 = () => {
@@ -30,6 +30,12 @@ const Skiper30 = () => {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 3.3]);
   const y3 = useTransform(scrollYProgress, [0, 1], [0, height * 1.25]);
   const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 3]);
+
+  const textOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.4, 0.6, 1],
+    [0, 1, 1, 0]
+  );
 
   useEffect(() => {
     const lenis = new Lenis();
@@ -53,16 +59,26 @@ const Skiper30 = () => {
   }, []);
 
   return (
-    <main className="w-full bg-[#eee] text-black">
+    // REMOVED: Extra background color to allow seamless integration
+    <main className="w-full">
+      {/* REMOVED: The 100vh spacer div from before the gallery */}
       <div
         ref={gallery}
-        className="relative box-border flex h-[175vh] gap-[2vw] overflow-hidden bg-white p-[2vw]"
+        className="relative box-border flex h-[175vh] gap-[2vw] overflow-hidden bg-black p-[2vw]"
       >
         <Column images={[images[0], images[1], images[2]]} y={y} />
         <Column images={[images[3], images[4], images[5]]} y={y2} />
         <Column images={[images[6], images[7], images[8]]} y={y3} />
-        <Column images={[images[6], images[7], images[8]]} y={y4} />
+        <Column images={[images[1], images[4], images[7]]} y={y4} />
+
+        <motion.h1
+          style={{ opacity: textOpacity }}
+          className="pointer-events-none absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-[15vw] font-bold text-white"
+        >
+          Memories
+        </motion.h1>
       </div>
+      {/* REMOVED: The 100vh spacer div from after the gallery */}
     </main>
   );
 };
@@ -75,15 +91,18 @@ type ColumnProps = {
 const Column = ({ images, y }: ColumnProps) => {
   return (
     <motion.div
-      className="relative -top-[45%] flex h-full w-1/4 min-w-[250px] flex-col gap-[2vw] first:top-[-45%] [&:nth-child(2)]:top-[-95%] [&:nth-child(3)]:top-[-45%] [&:nth-child(4)]:top-[-75%]"
+      className="relative flex h-full w-1/4 min-w-[250px] flex-col gap-[2vw] first:top-[-45%] [&:nth-child(2)]:top-[-95%] [&:nth-child(3)]:top-[-45%] [&:nth-child(4)]:top-[-75%]"
       style={{ y }}
     >
       {images.map((src, i) => (
-        <div key={i} className="relative h-full w-full overflow-hidden">
+        <div
+          key={i}
+          className="relative h-full w-full overflow-hidden rounded-md"
+        >
           <img
             src={`${src}`}
             alt="image"
-            className="pointer-events-none object-cover"
+            className="h-full w-full object-cover"
           />
         </div>
       ))}
@@ -91,22 +110,4 @@ const Column = ({ images, y }: ColumnProps) => {
   );
 };
 
-export { Skiper30 };
-
-/**
- * Skiper 30 Parallax_002 — React + framer motion + lenis
- * Inspired by and adapted from https://www.siena.film/films/my-project-x
- * We respect the original creators. This is an inspired rebuild with our own taste and does not claim any ownership.
- * These animations aren’t associated with the siena.film . They’re independent recreations meant to study interaction design
- *
- * License & Usage:
- * - Free to use and modify in both personal and commercial projects.
- * - Attribution to Skiper UI is required when using the free version.
- * - No attribution required with Skiper UI Pro.
- *
- * Feedback and contributions are welcome.
- *
- * Author: @gurvinder-singh02
- * Website: https://gxuri.in
- * Twitter: https://x.com/Gur__vi
- */
+export default Skiper30;

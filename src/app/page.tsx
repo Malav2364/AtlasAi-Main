@@ -6,7 +6,7 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'; // Import the plugin
 import { PlaneTakeoff, ArrowDown } from 'lucide-react';
 import Navbar from "@/components/navbar"; // update path as needed
 import TimeLineScroll from '@/components/timeLineScroll';
-import { Skiper30 } from '@/components/ui/skiper-ui/skiper30';
+import Skiper30  from '@/components/ui/skiper-ui/skiper30';
 
 gsap.registerPlugin(ScrollToPlugin); // Register the plugin
 

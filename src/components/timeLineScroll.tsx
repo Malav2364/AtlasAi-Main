@@ -131,7 +131,7 @@ const TimeLineScroll = () => {
       
       <div className="absolute inset-0 w-full h-full flex items-center justify-center z-10">
         <AnimatedText ref={text1Ref} text="Travel." className="absolute text-[25vw] font-extrabold text-white select-none z-20 blend-difference" style={{ lineHeight: '1' }} />
-        <AnimatedText ref={text2Ref} text="Explore." className="absolute text-[20vw] font-extrabold text-gray-900 select-none z-20 blend-difference" style={{ lineHeight: '1' }} />
+        <AnimatedText ref={text2Ref} text="Explore." className="absolute text-[20vw] font-extrabold text-white select-none z-20 blend-difference" style={{ lineHeight: '1' }} />
         <AnimatedText ref={text3Ref} text="Snap." className="absolute text-[25vw] font-extrabold text-white select-none z-20 blend-difference" style={{ lineHeight: '1' }} />
       </div>
     </section>
