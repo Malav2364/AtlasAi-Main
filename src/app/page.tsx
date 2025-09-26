@@ -7,6 +7,7 @@ import { PlaneTakeoff, ArrowDown } from 'lucide-react';
 import Navbar from "@/components/navbar"; // update path as needed
 import TimeLineScroll from '@/components/timeLineScroll';
 import Skiper30  from '@/components/ui/skiper-ui/skiper30';
+import SignOff from '@/components/scrubTitle';
 
 gsap.registerPlugin(ScrollToPlugin); // Register the plugin
 
@@ -218,6 +219,9 @@ export default function Home() {
       </section>
       <section >
         <Skiper30 />
+      </section>
+      <section>
+        <SignOff />
       </section>
     </main>
   );
