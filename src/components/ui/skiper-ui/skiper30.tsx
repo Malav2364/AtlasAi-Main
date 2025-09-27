@@ -2,6 +2,7 @@
 
 import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import Lenis from "lenis";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const images = [
@@ -99,10 +100,13 @@ const Column = ({ images, y }: ColumnProps) => {
           key={i}
           className="relative h-full w-full overflow-hidden rounded-md"
         >
-          <img
-            src={`${src}`}
+          <Image
+            src={src}
             alt="image"
-            className="h-full w-full object-cover"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+            quality={80}
           />
         </div>
       ))}

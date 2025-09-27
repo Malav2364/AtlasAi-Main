@@ -221,7 +221,7 @@ export default function Home() {
         <Skiper30 />
       </section>
       <section>
-        <SignOff />
+        <SignOff>The world is yours to explore.</SignOff>
       </section>
     </main>
   );
