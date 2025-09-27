@@ -8,6 +8,7 @@ import Navbar from "@/components/navbar"; // update path as needed
 import TimeLineScroll from '@/components/timeLineScroll';
 import Skiper30  from '@/components/ui/skiper-ui/skiper30';
 import SignOff from '@/components/scrubTitle';
+import Footer from '@/components/Footer';
 
 gsap.registerPlugin(ScrollToPlugin); // Register the plugin
 
@@ -134,7 +135,8 @@ export default function Home() {
 
   return (
     <main>
-      <section className="relative flex flex-col items-start justify-center min-h-screen pl-10 overflow-hidden">
+      {/* Use responsive padding and item alignment */}
+      <section className="relative flex flex-col items-center justify-center min-h-screen px-4 text-center md:items-start md:pl-10 md:text-left overflow-hidden">
         <Navbar />
         <video
           autoPlay
@@ -145,10 +147,12 @@ export default function Home() {
           <source src="/heroVid.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black opacity-65 z-0" />
-        <div className="relative z-10 flex flex-col items-start">
+        {/* Use responsive alignment for the content container */}
+        <div className="relative z-10 flex flex-col items-center md:items-start">
           <h1
             ref={textRef}
-            className="font-bold uppercase font-stretch-100% text-8xl text-left text-white z-20"
+            // Apply responsive font sizes
+            className="font-bold uppercase font-stretch-100% text-6xl sm:text-7xl lg:text-8xl text-white z-20"
             style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)' }}
           >
             {lines.map((line, lineIndex) => (
@@ -223,6 +227,7 @@ export default function Home() {
       <section>
         <SignOff>The world is yours to explore.</SignOff>
       </section>
+      <Footer />
     </main>
   );
 }
