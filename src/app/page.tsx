@@ -9,6 +9,7 @@ import TimeLineScroll from '@/components/timeLineScroll';
 import Skiper30  from '@/components/ui/skiper-ui/skiper30';
 import SignOff from '@/components/scrubTitle';
 import Footer from '@/components/Footer';
+import Link from 'next/link';
 
 gsap.registerPlugin(ScrollToPlugin); // Register the plugin
 
@@ -169,28 +170,29 @@ export default function Home() {
           {/* Container for both buttons */}
           <div className="flex items-center gap-4 mt-8">
             {/* Travel CTA Button - Reversed Animation */}
+            <Link href="/auth">
             <button
-              ref={buttonRef}
-              className="relative flex items-center justify-center p-3.5
-                        bg-transparent
-                        rounded-full
-                        border border-white
-                        font-bold text-xl text-white
-                        shadow-md
-                        backdrop-blur-lg
-                        focus:outline-none
-                        transition
-                        overflow-hidden"
-              style={{
-                boxShadow: "0px 5px 18px rgba(30,190,210,0.09)",
-                cursor: "pointer",
-                width: "50px", // Default circular width
-                height: "50px"
-              }}
-            >
-              <span ref={buttonTextRef} className="absolute whitespace-nowrap opacity-0">Start Your Journey</span>
-              <PlaneTakeoff ref={planeRef} className="absolute" size={24} />
-            </button>
+                          ref={buttonRef}
+                          className="relative flex items-center justify-center p-3.5
+                                    bg-transparent
+                                    rounded-full
+                                    border border-white
+                                    font-bold text-xl text-white
+                                    shadow-md
+                                    backdrop-blur-lg
+                                    focus:outline-none
+                                    transition
+                                    overflow-hidden"
+                          style={{
+                            boxShadow: "0px 5px 18px rgba(30,190,210,0.09)",
+                            cursor: "pointer",
+                            width: "50px", // Default circular width
+                            height: "50px"
+                          }}
+                        >
+                          <span ref={buttonTextRef} className="absolute whitespace-nowrap opacity-0">Start Your Journey</span>
+                          <PlaneTakeoff ref={planeRef} className="absolute" size={24} />
+              </button></Link>
 
             {/* "Explore More" Button - Reversed Animation */}
             <button
