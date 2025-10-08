@@ -170,7 +170,7 @@ export default function Home() {
           {/* Container for both buttons */}
           <div className="flex items-center gap-4 mt-8">
             {/* Travel CTA Button - Reversed Animation */}
-            <Link href="/auth">
+            <Link href="/onboard">
             <button
                           ref={buttonRef}
                           className="relative flex items-center justify-center p-3.5
