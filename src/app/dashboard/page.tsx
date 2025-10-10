@@ -1,6 +1,13 @@
 "use client";
 
-import { Map, Compass, Calendar, Milestone } from 'lucide-react';
+import { Compass, Calendar, Milestone } from 'lucide-react';
+import dynamic from 'next/dynamic';
+
+// Dynamically import the map component with SSR turned off
+const OpenFreeMap = dynamic(() => import('@/components/MapComponent'), {
+    ssr: false,
+    loading: () => <div className="flex h-full items-center justify-center bg-gray-200 dark:bg-gray-800"><p>Loading Map...</p></div>,
+});
 
 // Reusable Dashboard Widget Component
 const DashboardWidget = ({ children, className }: { children: React.ReactNode; className?: string; }) => (
@@ -15,15 +22,9 @@ export default function DashboardPage() {
             <h1 className="text-3xl md:text-4xl font-bold">Dashboard</h1>
             <p className="text-gray-600 dark:text-gray-400">Welcome back, traveler. Here is your mission control.</p>
 
-            {/* Map Widget - Reverted to placeholder */}
-            <DashboardWidget className="mt-8 h-96">
-                <h2 className="flex items-center gap-2 text-xl font-bold">
-                    <Map size={20} />
-                    <span>World Map</span>
-                </h2>
-                <div className="mt-4 flex h-full items-center justify-center border-t-2 border-dashed border-black text-gray-400 dark:border-white">
-                    <p>[ Interactive Map Component Goes Here ]</p>
-                </div>
+            {/* Map Widget with neo-brutalist frame */}
+            <DashboardWidget className="mt-8 h-96 overflow-hidden p-0">
+                <OpenFreeMap />
             </DashboardWidget>
 
             {/* Stats and Actions Grid */}
