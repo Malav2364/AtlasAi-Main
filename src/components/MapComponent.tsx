@@ -11,7 +11,7 @@ const OpenFreeMap = () => {
 
     mapInstance.current = new maplibregl.Map({
       container: mapContainer.current!,
-      style: "https://tiles.openfreemap.org/styles/liberty",
+      style: "https://tiles.openfreemap.org/styles/bright",
         center: [0, 30],
         zoom: 1.0,
     });
