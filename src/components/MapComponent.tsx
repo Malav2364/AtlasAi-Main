@@ -12,8 +12,8 @@ const OpenFreeMap = () => {
     mapInstance.current = new maplibregl.Map({
       container: mapContainer.current!,
       style: "https://tiles.openfreemap.org/styles/liberty",
-        center: [78.9629, 20.5937],
-        zoom: 4.5,
+        center: [0, 30],
+        zoom: 1.0,
     });
       new maplibregl.Marker()
     .setLngLat([72.8777, 19.0760]) // [longitude, latitude]

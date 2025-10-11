@@ -11,7 +11,7 @@ const OpenFreeMap = dynamic(() => import('@/components/MapComponent'), {
 
 // Reusable Dashboard Widget Component
 const DashboardWidget = ({ children, className }: { children: React.ReactNode; className?: string; }) => (
-    <div className={`border-2 border-black bg-white p-6 shadow-[4px_4px_0px_#000000] dark:border-white dark:bg-black dark:shadow-[4px_4px_0px_#FFFFFF] ${className}`}>
+    <div className={`flex flex-col border-2 border-black bg-white p-6 shadow-[4px_4px_0px_#000000] dark:border-white dark:bg-black dark:shadow-[4px_4px_0px_#FFFFFF] ${className}`}>
         {children}
     </div>
 );
